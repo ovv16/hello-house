@@ -7,17 +7,36 @@ btn1.forEach(el => el.addEventListener('mouseleave', () => {
   el.previousElementSibling.style.opacity = '0';
 }));
 
+// Створюємо новий IntersectionObserver
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Коли об'єкт стає видимим, ми запускаємо відео
+      video.play();
+    } else {
+      // Коли об'єкт приховується, ми призупиняємо відео
+      video.pause();
+    }
+  });
+});
+
+// Вибираємо елемент, який ми спостерігатимемо
+const videoContainer = document.getElementById('video-container');
+
+// Додаємо об'єкт для спостереження
+observer.observe(videoContainer);
+
 // video hover start
-const videoHover = document.querySelector('.js-video');
+const videoHover = document.getElementById('video-container');
 const video = document.getElementById('video');
-videoHover.addEventListener('mouseenter', () => {
-  document.querySelector('.texture').style.opacity = '0';
-  video.play();
-});
-videoHover.addEventListener('mouseleave', () => {
-  document.querySelector('.texture').style.opacity = '1';
-  video.pause();
-});
+// videoHover.addEventListener('mouseenter', () => {
+//   // document.querySelector('.texture').style.opacity = '0';
+//   video.play();
+// });
+// videoHover.addEventListener('mouseleave', () => {
+//   // document.querySelector('.texture').style.opacity = '1';
+//   video.pause();
+// });
 // video hover end
 // video-play start
 const popupVideo = document.querySelector('.video-popup');
@@ -137,10 +156,13 @@ const swiper6 = new Swiper('.swiper-img', {
 const swiper7 = new Swiper('.swiper-main', {
   loop: true,
   effect: 'fade',
-  // grabCursor: true,
   speed: 1500,
   autoplay: {
     delay: 5000,
+  },
+  pagination: {
+    el: '.pagination-main',
+    type: 'bullets',
   },
 });
 
