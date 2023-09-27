@@ -116,20 +116,53 @@ const swiper3 = new Swiper('.swiper-gallery', {
   // },
 });
 
-const swiper4 = new Swiper('.building-swiper', {
-  // centeredSlides: true,
-  // spaceBetween: 40,
-  slidesPerView: 1,
-  loop: true,
-  pagination: {
-    el: '.pagination-building',
-    type: 'fraction',
-  },
-  navigation: {
-    nextEl: '.button-building-next',
-    prevEl: '.button-building-prev',
-  },
+// //  swiper8
+// const swiper8 = new Swiper('.swiper-building-bottom', {
+//   spaceBetween: 15,
+//   slidesPerView: 1,
+//   freeMode: true,
+//   watchSlidesProgress: true,
+// });
+// //  swiper4
+// const swiper4 = new Swiper('.building-swiper', {
+//   slidesPerView: 1,
+//   loop: true,
+//   pagination: {
+//     el: '.pagination-building',
+//     type: 'fraction',
+//   },
+//   navigation: {
+//     nextEl: '.button-building-next',
+//     prevEl: '.button-building-prev',
+//   },
+//   thumbs: {
+//     swiper: swiper8,
+//   },
+// });
+document.addEventListener('DOMContentLoaded', function () {
+  const outerSlider = new Swiper('.outer-slider', {
+    slidesPerView: 1,
+    effect: "fade",
+    speed: 500,
+    navigation: {
+      nextEl: '.swiper-button-next.outer-slider-next',
+      prevEl: '.swiper-button-prev.outer-slider-prev',
+    },
+  });
+
+  const innerSliders = document.querySelectorAll('.inner-slider .swiper-container');
+  innerSliders.forEach(function (innerSlider) {
+    new Swiper(innerSlider, {
+      slidesPerView: 1,
+      navigation: {
+        nextEl: innerSlider.querySelector('.swiper-button-next.inner-slider-next'),
+        prevEl: innerSlider.querySelector('.swiper-button-prev.inner-slider-prev'),
+      },
+    });
+  });
 });
+
+
 
 const swiper5 = new Swiper('.swiper-text', {
   loop: true,
@@ -163,8 +196,10 @@ const swiper7 = new Swiper('.swiper-main', {
   pagination: {
     el: '.pagination-main',
     type: 'bullets',
+    clickable: true,
   },
 });
+
 
 const eye = document.querySelector('.container-eye');
 const eyeOpen = document.querySelector('.letter-hover');
