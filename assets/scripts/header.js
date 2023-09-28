@@ -158,47 +158,37 @@ btnClose.forEach(el =>
 const leadFormRef = document.querySelector('.lead-popup');
 const homePageRef = document.getElementById('home');
 const leadFormCloseRef = document.querySelector('.lead-popup-close');
+const chooseApartmentsPageRef = document.getElementById('3d');
 
 window.onload = function() {
   if (!homePageRef) {
     setTimeout(function() {
-      leadFormRef.classList.add('lead-active');
-    }, 10000);
+      var popupShown = sessionStorage.getItem('popupShown');
+      if (!popupShown) {
+        leadFormRef.classList.add('lead-active');
+      }
+    }, 30000);
   }
 };
 
-if (homePageRef) {
-  let hasScrolledToBottom = false; // Flag to track if scrolled to bottom
-
-  window.addEventListener('scroll', function() {
-    if (!hasScrolledToBottom) { // Check if not scrolled to bottom yet
-      const sectionToScrollRef = document.querySelector('.location-main');
-      const viewportOffset = sectionToScrollRef.getBoundingClientRect();
-      const top = viewportOffset.top;
-
-      // Check if scrolled to the bottom of the page
-      if (window.scrollY > top) {
-        hasScrolledToBottom = true; // Set the flag to true
-        leadFormRef.classList.add('lead-active');
-      }
-    }
-  });
-};
-
 leadFormCloseRef.addEventListener('click', e => {
+  sessionStorage.setItem('popupShown', 'true');
   leadFormRef.classList.remove('lead-active');
+  revealImgWrapRef.classList.remove('has-revealed');
+  blockToRevealRef.classList.remove('has-revealed');
+  document.querySelector('.lead-popup-reveal').classList.remove('has-revealed');
 });
 
 const buttonRevealRef = document.querySelector('.lead-popup-reveal__btn');
 const revealImgWrapRef = document.querySelector('.lead-popup__img-wrap');
-const blockToRevealRef = document.querySelector('.lead-popup-form-wrap')
+const blockToRevealRef = document.querySelector('.lead-popup-form-wrap');
 
 buttonRevealRef.addEventListener('click', e => {
   const target = e.target;
   target.parentElement.classList.add('has-revealed');
   revealImgWrapRef.classList.add('has-revealed');
   blockToRevealRef.classList.add('has-revealed');
-})
+});
 
 // btnClose.forEach(el =>
 //   el.addEventListener('click', () => {

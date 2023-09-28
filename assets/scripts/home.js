@@ -1,11 +1,15 @@
 const btn1 = document.querySelectorAll('.js-hover');
 
-btn1.forEach(el => el.addEventListener('mouseenter', () => {
-  el.previousElementSibling.style.opacity = '1';
-}));
-btn1.forEach(el => el.addEventListener('mouseleave', () => {
-  el.previousElementSibling.style.opacity = '0';
-}));
+btn1.forEach(el =>
+  el.addEventListener('mouseenter', () => {
+    el.previousElementSibling.style.opacity = '1';
+  }),
+);
+btn1.forEach(el =>
+  el.addEventListener('mouseleave', () => {
+    el.previousElementSibling.style.opacity = '0';
+  }),
+);
 
 // Створюємо новий IntersectionObserver
 const observer = new IntersectionObserver(entries => {
@@ -85,60 +89,42 @@ const swiper = new Swiper('.benefits-swiper', {
 
 const swiper2 = new Swiper('.swiper-gallery-bottom', {
   loop: true,
-  spaceBetween: 15,
-  slidesPerView: 3,
-  freeMode: true,
-  watchSlidesProgress: true,
+  spaceBetween: 10,
+  slidesPerView: 6,
+  centeredSlides: true,
   breakpoints: {
     575: {
       slidesPerView: 6,
     },
     // 992: {
-    //   spaceBetween: 50,
+    //   //   spaceBetween: 50,
+    //   slidesPerView: 2,
     // },
-    1440: {
-      spaceBetween: 10,
-    },
+    // 1440: {
+    //   spaceBetween: 30,
+    // },
   },
 });
 const swiper3 = new Swiper('.swiper-gallery', {
   loop: true,
+  loopedSlides: 6,
   spaceBetween: 10,
+  centeredSlides: true,
   navigation: {
     nextEl: '.gallery-next',
     prevEl: '.gallery-prev',
   },
-  thumbs: {
-    swiper: swiper2,
-  },
+  // thumbs: {
+  //   swiper: swiper2,
+  // },
   // autoplay: {
   //   delay: 5000,
   // },
 });
 
-// //  swiper8
-// const swiper8 = new Swiper('.swiper-building-bottom', {
-//   spaceBetween: 15,
-//   slidesPerView: 1,
-//   freeMode: true,
-//   watchSlidesProgress: true,
-// });
-// //  swiper4
-// const swiper4 = new Swiper('.building-swiper', {
-//   slidesPerView: 1,
-//   loop: true,
-//   pagination: {
-//     el: '.pagination-building',
-//     type: 'fraction',
-//   },
-//   navigation: {
-//     nextEl: '.button-building-next',
-//     prevEl: '.button-building-prev',
-//   },
-//   thumbs: {
-//     swiper: swiper8,
-//   },
-// });
+swiper3.controller.control = swiper2;
+swiper2.controller.control = swiper3;
+
 document.addEventListener('DOMContentLoaded', function () {
   const outerSlider = new Swiper('.outer-slider', {
     slidesPerView: 1,
@@ -225,27 +211,27 @@ eye.addEventListener('mouseleave', () => {
 //   );
 // });
 
-const path = document.querySelector('.js-choose-hover');
-const defaultMorhp = document.querySelector('.some path').getAttribute('d');
-path.addEventListener('mouseenter', () => {
-  gsap.fromTo(
-    '.some path',
-    {
-      scale: 1,
-    },
-    {
-      scale: 4.5,
-    },
-  );
-});
-path.addEventListener('mouseleave', () => {
-  gsap.fromTo(
-    '.some path',
-    {
-      scale: 4.5,
-    },
-    {
-      scale: 1,
-    },
-  );
-});
+// const path = document.querySelector('.js-choose-hover');
+// const defaultMorhp = document.querySelector('.some path').getAttribute('d');
+// path.addEventListener('mouseenter', () => {
+//   gsap.fromTo(
+//     '.some path',
+//     {
+//       scale: 1,
+//     },
+//     {
+//       scale: 4.5,
+//     },
+//   );
+// });
+// path.addEventListener('mouseleave', () => {
+//   gsap.fromTo(
+//     '.some path',
+//     {
+//       scale: 4.5,
+//     },
+//     {
+//       scale: 1,
+//     },
+//   );
+// });
